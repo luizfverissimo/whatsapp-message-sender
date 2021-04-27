@@ -1,0 +1,40 @@
+{
+  "name": "whatsapp-message-sender",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron .",
+    "watch": "webpack --config webpack.common.js --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/luizfverissimo/whatsapp-message-sender.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/luizfverissimo/whatsapp-message-sender/issues"
+  },
+  "homepage": "https://github.com/luizfverissimo/whatsapp-message-sender#readme",
+  "devDependencies": {
+    "@babel/core": "^7.13.16",
+    "@babel/preset-env": "^7.13.15",
+    "@babel/preset-react": "^7.13.13",
+    "babel-loader": "^8.2.2",
+    "css-loader": "^5.2.4",
+    "electron": "^12.0.5",
+    "electron-reload": "^1.5.0",
+    "sass": "^1.32.11",
+    "sass-loader": "^11.0.1",
+    "style-loader": "^2.0.0",
+    "webpack": "^5.36.0",
+    "webpack-cli": "^4.6.0"
+  },
+  "dependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  }
+}
