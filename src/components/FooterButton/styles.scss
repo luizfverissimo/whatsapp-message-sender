@@ -1,0 +1,22 @@
+.footerButton {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+
+  p {
+    display: flex;
+    flex-direction: column;
+    margin-left: 1.5rem;
+
+  }
+
+  span {
+    font-size: 0.8rem;
+
+    &.active {
+      color: var(--green);
+    }
+  }
+}

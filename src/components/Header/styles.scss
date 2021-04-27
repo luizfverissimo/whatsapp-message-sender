@@ -1,0 +1,44 @@
+.headerContainer {
+  background-color: var(--gray-200);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  .header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+
+    h1 {
+      font-size: 1.5rem;
+    }
+  }
+
+  .tabsNavigation {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--bg);
+
+    div {
+      width: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 1rem;
+
+      h2 {
+        font-size: 1.2rem;
+      }
+
+      &.active {
+        background-color: var(--gray-200);
+        border-top: 1px solid var(--gray-100);
+        border-radius: 0 0 12px 12px;
+      }
+    }
+  }
+}

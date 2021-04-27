@@ -1,0 +1,60 @@
+.container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contactsContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem;
+
+  div {
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  h2 {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  p {
+    margin: 1.5rem 0;
+  }
+
+  span {
+    margin-bottom: 1.5rem;
+
+    & ~ span {
+      color: var(--green);
+      font-weight: bold;
+    }
+  }
+
+  ul {
+    width: 100%;
+    max-height: 350px;
+    overflow-y: scroll;
+
+    li {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: var(--gray-200);
+      padding: 0.5rem 1rem;
+      border-radius: 12px;
+      margin-bottom: 0.5rem;
+
+      span {
+        margin: 0;
+      }
+    }
+  }
+}
