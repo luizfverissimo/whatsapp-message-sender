@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import FooterButton from '../../components/FooterButton';
 import Header from '../../components/Header';
 
@@ -8,7 +7,7 @@ import './styles.scss';
 function Home() {
   return (
     <div className='container'>
-      <Header/>
+      <Header />
       <div className='contactsContainer'>
         <div>
           <h2>Carregar arquivo .xlsx</h2>
@@ -22,7 +21,14 @@ function Home() {
             <strong>Arquivo selecionado:</strong> minhalista.xlsx
           </span>
           <span>20 contatos identificados</span>
-          <button type='button'>Confirmar lista</button>
+          <button
+            onClick={() => {
+              electron.notificationApi.sendNotification('olá mundo!');
+            }}
+            type='button'
+          >
+            Confirmar lista
+          </button>
         </div>
         <div>
           <h2>Lista de Contatos:</h2>
@@ -93,7 +99,7 @@ function Home() {
           </ul>
         </div>
       </div>
-      <FooterButton/>
+      <FooterButton />
     </div>
   );
 }
