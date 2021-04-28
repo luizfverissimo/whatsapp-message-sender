@@ -1,6 +1,9 @@
 const { BrowserWindow, app, ipcMain, Notification } = require('electron');
 const path = require('path');
 
+const notificationSender = require('./api/notification')
+const openDialogReadFile = require('./api/readFileApi')
+
 function createWindow() {
   const win = new BrowserWindow({
     width: 1024,
@@ -22,10 +25,11 @@ require('electron-reload')(__dirname, {
 });
 
 ipcMain.on('notify', (_, message) => {
-  new Notification({
-    title: 'notification',
-    body: message
-  }).show();
+  notificationSender(message)
+});
+
+ipcMain.on('file', () => {
+  openDialogReadFile()
 });
 
 app.whenReady().then(createWindow);
