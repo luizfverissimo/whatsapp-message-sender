@@ -1,8 +1,8 @@
 const { BrowserWindow, app, ipcMain, Notification } = require('electron');
 const path = require('path');
 
-const notificationSender = require('./api/notification')
-const openDialogReadFile = require('./api/readFileApi')
+const notificationSender = require('./api/notification');
+const openDialogReadFile = require('./api/readFileApi');
 
 function createWindow() {
   const win = new BrowserWindow({
@@ -24,12 +24,13 @@ require('electron-reload')(__dirname, {
   electron: path.join(__dirname, 'node_modules', '.bin', 'electron')
 });
 
-ipcMain.on('notify', (_, message) => {
-  notificationSender(message)
+ipcMain.on('notify', (event, message) => {
+  notificationSender(message);
 });
 
-ipcMain.on('file', () => {
-  openDialogReadFile()
+ipcMain.on('file', (event) => {
+  const result = openDialogReadFile();
+  event.returnValue = result;
 });
 
 app.whenReady().then(createWindow);

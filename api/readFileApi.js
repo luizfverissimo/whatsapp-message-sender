@@ -1,20 +1,22 @@
 const { dialog } = require('electron');
-const fs = require('fs');
-const path = require('path')
+const xlsx = require('xlsx');
 
-async function openDialogReadFile() {
-  const { canceled, filePaths } = await dialog.showOpenDialog({
+function openDialogReadFile() {
+  const filePaths = dialog.showOpenDialogSync({
     filters: [{ name: 'Tabelas', extensions: ['xlsx'] }],
-    properties: ['openFile'],
+    properties: ['openFile']
   });
 
-  if (canceled) {
-    return;
+  if (!filePaths) {
+    console.log('cancelou!');
+    return [];
   }
 
-  const file = await fs.readFile(filePaths[0])
+  const list = xlsx.readFile(filePaths[0], { cellDates: true });
+  const workSheet = list.Sheets[list.SheetNames[0]];
+  const workSheetJson = xlsx.utils.sheet_to_json(workSheet);
 
-  console.log(file)
+  return workSheetJson;
 }
 
-module.exports = openDialogReadFile
+module.exports = openDialogReadFile;

@@ -22,11 +22,11 @@
 
   span {
     margin-bottom: 1.5rem;
+  }
 
-    & ~ span {
-      color: var(--green);
-      font-weight: bold;
-    }
+  .spanContacts {
+    color: var(--green);
+    font-weight: bold;
   }
 
   ul {

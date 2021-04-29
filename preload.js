@@ -2,13 +2,14 @@ const { ipcRenderer, contextBridge } = require('electron');
 
 contextBridge.exposeInMainWorld('electron', {
   notificationApi: {
-    sendNotification(message) {
+    sendNotification: (message) => {
       ipcRenderer.send('notify', message);
     }
   },
   readFileApi: {
-    readFile() {
-      ipcRenderer.send('file')
+    readFile: () => {
+      const res = ipcRenderer.sendSync('file')
+      return res
     }
   }
 });
