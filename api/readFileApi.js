@@ -3,12 +3,11 @@ const xlsx = require('xlsx');
 
 function openDialogReadFile() {
   const filePaths = dialog.showOpenDialogSync({
-    filters: [{ name: 'Tabelas', extensions: ['xlsx'] }],
+    filters: [{ name: 'Tabelas', extensions: ['xlsx', 'xls'] }],
     properties: ['openFile']
   });
 
   if (!filePaths) {
-    console.log('cancelou!');
     return [];
   }
 

@@ -1,5 +1,5 @@
-import React, { useContext, useState } from 'react';
-import stringinject from 'stringinject';
+import React, { useContext, useEffect, useState } from 'react';
+import stringInject from 'stringinject';
 
 import FooterButton from '../../components/FooterButton';
 import Header from '../../components/Header';
@@ -8,14 +8,31 @@ import { AppContext } from '../../contexts/AppContext';
 import './styles.scss';
 
 function Message() {
-  const [message, setMessage] = useState('');
-  const [messagePreview, setMessagePreview] = useState('');
+  const {
+    listParams,
+    isMessageConfigured,
+    listJSON,
+    saveMessage,
+    messageSaved
+  } = useContext(AppContext);
 
-  const { listParams, listJSON } = useContext(AppContext);
+  const [message, setMessage] = useState(
+    messageSaved.length <= 0 ? '' : messageSaved
+  );
+  const [messagePreview, setMessagePreview] = useState('');
+  const [isMessageWrote, setIsMessageWrote] = useState(false);
+
+  useEffect(() => {
+    if (message.length > 1) {
+      setIsMessageWrote(true);
+    }
+    if (message.length <= 1) {
+      setIsMessageWrote(false);
+    }
+  }, [message]);
 
   function getPreviewMessage() {
-    const messageReplaced = stringinject(message, listJSON[0]);
-    console.log(messageReplaced)
+    const messageReplaced = stringInject(message, listJSON[0]);
     setMessagePreview(messageReplaced);
   }
 
@@ -41,7 +58,15 @@ function Message() {
           </button>
           <p>Pré-visualização:</p>
           <textarea value={messagePreview} disabled />
-          <button type='button'>Confirmar mensagem</button>
+          <button
+            onClick={() => saveMessage(message)}
+            disabled={!isMessageWrote}
+            type='button'
+          >
+            {isMessageConfigured
+              ? 'Confirmar nova mensagem'
+              : 'Confirmar mensagem'}
+          </button>
         </div>
         <div>
           <h2>Parâmetros:</h2>

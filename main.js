@@ -3,6 +3,7 @@ const path = require('path');
 
 const notificationSender = require('./api/notification');
 const openDialogReadFile = require('./api/readFileApi');
+const sendWhatsappMessage = require('./api/senderApi');
 
 function createWindow() {
   const win = new BrowserWindow({
@@ -31,6 +32,10 @@ ipcMain.on('notify', (event, message) => {
 ipcMain.on('file', (event) => {
   const result = openDialogReadFile();
   event.returnValue = result;
+});
+
+ipcMain.on('send', (event, message, contacts ) => {
+  sendWhatsappMessage(message, contacts)
 });
 
 app.whenReady().then(createWindow);

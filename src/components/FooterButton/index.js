@@ -1,20 +1,32 @@
 import React, { useContext } from 'react';
+import { BiX, BiCheck } from 'react-icons/bi';
 import { AppContext } from '../../contexts/AppContext';
 
 import './styles.scss';
 
 function FooterButton() {
-  const { isListLoaded } = useContext(AppContext);
+  const {
+    isListLoaded,
+    isMessageConfigured,
+    isReadyToSendMessage,
+    sendMessage
+  } = useContext(AppContext);
   return (
     <div className='footerButton'>
-      <button disabled type='button'>
-        Enviar Mensagem para 20 contatos
+      <button
+        disabled={!isReadyToSendMessage}
+        onClick={sendMessage}
+        type='button'
+      >
+        Enviar Mensagem
       </button>
       <p>
         <span className={isListLoaded ? 'active' : ''}>
-          Lista de contatos adicionada
+        {isListLoaded ? <BiCheck size={24} color="#25D366"/> : <BiX size={24} color='red'/> } Lista de contatos adicionada
         </span>
-        <span>Mensagem configurada</span>
+        <span className={isMessageConfigured ? 'active' : ''}>
+        {isMessageConfigured ? <BiCheck size={24} color="#25D366"/> : <BiX size={24} color='red'/> } Mensagem configurada 
+        </span>
       </p>
     </div>
   );

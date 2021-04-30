@@ -16,6 +16,8 @@
 
   span {
     font-size: 0.8rem;
+    display: flex;
+    align-items: center;
 
     &.active {
       color: var(--green);

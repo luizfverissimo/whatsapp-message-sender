@@ -13,9 +13,9 @@ function Home() {
       <Header />
       <div className='contactsContainer'>
         <div>
-          <h2>Carregar arquivo .xlsx</h2>
+          <h2>Carregar arquivo .xlsx ou .xls</h2>
           <button onClick={selectFile} type='button'>
-            {!isListLoaded ? 'Selecione o arquivo no computador' : 'Selecionar um novo arquivo de lista'}
+            {!isListLoaded ? 'Selecione o arquivo no computador' : 'Selecionar um novo arquivo'}
           </button>
           <p>
             ATENÇÃO! O arquivo precisa ter as colunas <strong>nome</strong> e{' '}

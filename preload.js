@@ -11,5 +11,10 @@ contextBridge.exposeInMainWorld('electron', {
       const res = ipcRenderer.sendSync('file')
       return res
     }
+  },
+  senderApi: {
+    sendWhatsappMessage: (message, contacts) => {
+      ipcRenderer.send('send', message, contacts);
+    }
   }
 });

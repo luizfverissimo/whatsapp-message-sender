@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 
 export const AppContext = createContext({});
 
@@ -6,6 +6,21 @@ export function AppContextProvider({ children }) {
   const [listJSON, setListJSON] = useState([]);
   const [isListLoaded, setIsListLoaded] = useState(false);
   const [listParams, setListParams] = useState([]);
+  const [isMessageConfigured, setIsMessageConfigured] = useState(false);
+  const [messageSaved, setMessageSaved] = useState('');
+  const [isReadyToSendMessage, setIsReadyToSendMessage] = useState(false);
+
+  useEffect(() => {
+    if (isListLoaded && isMessageConfigured) {
+      setIsReadyToSendMessage(true);
+    }
+  }, [isListLoaded, isMessageConfigured]);
+
+  function saveMessage(message) {
+    setMessageSaved(message);
+    setIsMessageConfigured(true);
+    alert(`A mensagem: "${message}" foi salva!`);
+  }
 
   function propertyVerification(property, object) {
     return object.hasOwnProperty(property);
@@ -16,7 +31,7 @@ export function AppContextProvider({ children }) {
     Object.keys(object).map((key) => {
       objectKeys.push(key);
     });
-    
+
     setListParams(objectKeys);
   }
 
@@ -41,9 +56,25 @@ export function AppContextProvider({ children }) {
     extractParams(responseList[0]);
   }
 
+  function sendMessage() {
+    if (isListLoaded && isMessageConfigured) {
+      electron.senderApi.sendWhatsappMessage(messageSaved, listJSON)
+    }  
+  }
+
   return (
     <AppContext.Provider
-      value={{ isListLoaded, listParams, listJSON, selectFile }}
+      value={{
+        isListLoaded,
+        isMessageConfigured,
+        isReadyToSendMessage,
+        messageSaved,
+        listParams,
+        listJSON,
+        selectFile,
+        saveMessage,
+        sendMessage
+      }}
     >
       {children}
     </AppContext.Provider>
