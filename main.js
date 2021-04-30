@@ -21,9 +21,9 @@ function createWindow() {
   win.loadFile('index.html');
 }
 
-require('electron-reload')(__dirname, {
-  electron: path.join(__dirname, 'node_modules', '.bin', 'electron')
-});
+// require('electron-reload')(__dirname, {
+//   electron: path.join(__dirname, 'node_modules', '.bin', 'electron')
+// });
 
 ipcMain.on('notify', (event, message) => {
   notificationSender(message);
