@@ -1,4 +1,5 @@
-import React, { createContext, useEffect, useState } from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
+import { ConfigContext } from './ConfigContext';
 
 export const AppContext = createContext({});
 
@@ -9,6 +10,8 @@ export function AppContextProvider({ children }) {
   const [isMessageConfigured, setIsMessageConfigured] = useState(false);
   const [messageSaved, setMessageSaved] = useState('');
   const [isReadyToSendMessage, setIsReadyToSendMessage] = useState(false);
+
+  const { timeBefore, timeAfter } = useContext(ConfigContext);
 
   useEffect(() => {
     if (isListLoaded && isMessageConfigured) {
@@ -58,8 +61,13 @@ export function AppContextProvider({ children }) {
 
   function sendMessage() {
     if (isListLoaded && isMessageConfigured) {
-      electron.senderApi.sendWhatsappMessage(messageSaved, listJSON)
-    }  
+      electron.senderApi.sendWhatsappMessage(
+        messageSaved,
+        listJSON,
+        timeBefore,
+        timeAfter
+      );
+    }
   }
 
   return (

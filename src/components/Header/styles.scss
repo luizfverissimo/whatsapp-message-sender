@@ -46,4 +46,13 @@
       }
     }
   }
+
+  .icon {
+    transition: filter .2s;
+    cursor: pointer;
+
+    &:hover {
+      filter: brightness(1.2);
+    }
+  }
 }

@@ -87,3 +87,21 @@ button {
     filter: brightness(1.2);
   }
 }
+
+/* width */
+::-webkit-scrollbar {
+  width: 8px;
+	height: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--gray-100);
+	border-radius: 20px;
+	
+}

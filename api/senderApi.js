@@ -13,7 +13,7 @@ function createUrl(message, phone) {
   return urlCreated;
 }
 
-async function sendWhatsappMessage(message, contacts) {
+async function sendWhatsappMessage(message, contacts, timeBefore, timeAfter) {
   const locateChromePath = await locateChrome()
 
   const browser = await puppeteer.launch({
@@ -33,9 +33,9 @@ async function sendWhatsappMessage(message, contacts) {
 
       await page.goto(urlCreated);
       await page.waitForSelector('#side > header');
-      await page.waitForTimeout((Math.random() * (4 - 2) + 2) * 500);
+      await page.waitForTimeout((Math.random() * (4 - 2) + 2) * timeBefore);
       await page.keyboard.press('Enter');
-      await page.waitForTimeout((Math.random() * (4 - 2) + 2) * 1000);
+      await page.waitForTimeout((Math.random() * (4 - 2) + 2) * timeAfter);
     } catch (err) {
       console.log(err);
     }

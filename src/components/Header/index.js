@@ -19,7 +19,9 @@ function Header() {
     <header className='headerContainer'>
       <div className='header'>
         <h1>WhatsApp Message Sender</h1>
-        <BiCog size={32} />
+        <Link to='/config'>
+          <BiCog size={32} className='icon' />
+        </Link>
       </div>
       <div className='tabsNavigation'>
         <div className={isHomePath ? 'active' : ''}>

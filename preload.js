@@ -13,8 +13,8 @@ contextBridge.exposeInMainWorld('electron', {
     }
   },
   senderApi: {
-    sendWhatsappMessage: (message, contacts) => {
-      ipcRenderer.send('send', message, contacts);
+    sendWhatsappMessage: (message, contacts, timeBefore, timeAfter) => {
+      ipcRenderer.send('send', message, contacts, timeBefore, timeAfter);
     }
   }
 });
