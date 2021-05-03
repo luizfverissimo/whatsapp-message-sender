@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import stringInject from 'stringinject';
 
 import FooterButton from '../../components/FooterButton';
@@ -22,6 +22,8 @@ function Message() {
   const [messagePreview, setMessagePreview] = useState('');
   const [isMessageWrote, setIsMessageWrote] = useState(false);
 
+  const messageInput = useRef(null);
+
   useEffect(() => {
     if (message.length > 1) {
       setIsMessageWrote(true);
@@ -38,6 +40,7 @@ function Message() {
 
   function addParamToText(params) {
     const newMessageConcat = message.concat(`{${params}}`);
+    messageInput.current.focus()
     setMessage(newMessageConcat);
   }
 
@@ -48,6 +51,7 @@ function Message() {
         <div>
           <h2>Mensagem:</h2>
           <input
+            ref={messageInput}
             value={message}
             onChange={(e) => {
               setMessage(e.target.value);

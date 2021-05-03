@@ -24,16 +24,16 @@ function Header() {
         </Link>
       </div>
       <div className='tabsNavigation'>
-        <div className={isHomePath ? 'active' : ''}>
-          <Link to='/'>
+        <Link to='/' style={{width: '100%'}}>
+          <div className={isHomePath ? 'active' : ''}>
             <h2>Contatos</h2>
-          </Link>
-        </div>
-        <div className={isMessagePath ? 'active' : ''}>
-          <Link to='/message'>
+          </div>
+        </Link>
+        <Link to='/message' style={{width: '100%'}}>
+          <div className={isMessagePath ? 'active' : ''}>
             <h2>Mensagem</h2>
-          </Link>
-        </div>
+          </div>
+        </Link>
       </div>
     </header>
   );
