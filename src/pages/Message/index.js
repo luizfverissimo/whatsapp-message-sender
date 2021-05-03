@@ -47,7 +47,7 @@ function Message() {
       <div className='messageContainer'>
         <div>
           <h2>Mensagem:</h2>
-          <textarea
+          <input
             value={message}
             onChange={(e) => {
               setMessage(e.target.value);
