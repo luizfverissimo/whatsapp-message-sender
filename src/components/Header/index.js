@@ -18,18 +18,21 @@ function Header() {
   return (
     <header className='headerContainer'>
       <div className='header'>
-        <h1>WhatsApp Message Sender</h1>
+        <div>
+          <img src='file:///assets/logo-full.png' />
+          <h1>WhatsApp Message Sender</h1>
+        </div>
         <Link to='/config'>
           <BiCog size={32} className='icon' />
         </Link>
       </div>
       <div className='tabsNavigation'>
-        <Link to='/' style={{width: '100%'}}>
+        <Link to='/' style={{ width: '100%' }}>
           <div className={isHomePath ? 'active' : ''}>
             <h2>Contatos</h2>
           </div>
         </Link>
-        <Link to='/message' style={{width: '100%'}}>
+        <Link to='/message' style={{ width: '100%' }}>
           <div className={isMessagePath ? 'active' : ''}>
             <h2>Mensagem</h2>
           </div>

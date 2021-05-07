@@ -21,6 +21,7 @@ function Message() {
   );
   const [messagePreview, setMessagePreview] = useState('');
   const [isMessageWrote, setIsMessageWrote] = useState(false);
+  const [isSendingImage, setIsSendingImage] = useState(false);
 
   const messageInput = useRef(null);
 
@@ -40,7 +41,7 @@ function Message() {
 
   function addParamToText(params) {
     const newMessageConcat = message.concat(`{${params}}`);
-    messageInput.current.focus()
+    messageInput.current.focus();
     setMessage(newMessageConcat);
   }
 
@@ -89,6 +90,19 @@ function Message() {
               </p>
             )}
           </ul>
+          <div className='imageInput'>
+            <div>
+              <input
+                type='checkbox'
+                value={isSendingImage}
+                onChange={() => setIsSendingImage(!isSendingImage)}
+              />
+              <p>Enviar imagem:</p>
+            </div>
+            <button disabled={!isSendingImage} type='button'>
+              Escolher imagem...
+            </button>
+          </div>
         </div>
       </div>
       <FooterButton />
