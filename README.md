@@ -29,9 +29,7 @@ yarn watch && yarn start
 ```
 
 ## Author
-
-👤 **LF Verissimo**
-
+[<img src="https://github.com/luizfverissimo/luizfverissimo/blob/master/lf_verissimo_logo_light.png?raw=true" alt="lf verissimo logo" width="200"/>](https://lfverissimo.com)
 * Website: https://lfverissimo.com
 * Github: [@luizfverissimo](https://github.com/luizfverissimo)
 * LinkedIn: [@lfverissimo](https://linkedin.com/in/lfverissimo)
