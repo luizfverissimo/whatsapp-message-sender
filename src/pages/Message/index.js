@@ -12,8 +12,12 @@ function Message() {
     listParams,
     isMessageConfigured,
     listJSON,
+    imagePath,
     saveMessage,
-    messageSaved
+    messageSaved,
+    isSendingImage,
+    setIsSendingImage,
+    selectImage
   } = useContext(AppContext);
 
   const [message, setMessage] = useState(
@@ -21,7 +25,6 @@ function Message() {
   );
   const [messagePreview, setMessagePreview] = useState('');
   const [isMessageWrote, setIsMessageWrote] = useState(false);
-  const [isSendingImage, setIsSendingImage] = useState(false);
 
   const messageInput = useRef(null);
 
@@ -99,9 +102,16 @@ function Message() {
               />
               <p>Enviar imagem:</p>
             </div>
-            <button disabled={!isSendingImage} type='button'>
+            <button
+              disabled={!isSendingImage}
+              type='button'
+              onClick={selectImage}
+            >
               Escolher imagem...
             </button>
+            {imagePath.length > 0 && (
+              <img src={imagePath} alt='preview imagem' />
+            )}
           </div>
         </div>
       </div>

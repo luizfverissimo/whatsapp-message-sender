@@ -10,6 +10,8 @@ export function AppContextProvider({ children }) {
   const [isMessageConfigured, setIsMessageConfigured] = useState(false);
   const [messageSaved, setMessageSaved] = useState('');
   const [isReadyToSendMessage, setIsReadyToSendMessage] = useState(false);
+  const [isSendingImage, setIsSendingImage] = useState(false);
+  const [imagePath, setImagePath] = useState('');
 
   const { timeBefore, timeAfter } = useContext(ConfigContext);
 
@@ -18,6 +20,10 @@ export function AppContextProvider({ children }) {
       setIsReadyToSendMessage(true);
     }
   }, [isListLoaded, isMessageConfigured]);
+
+  useEffect(() => {
+    setImagePath('');
+  }, [isSendingImage]);
 
   function saveMessage(message) {
     setMessageSaved(message);
@@ -59,6 +65,12 @@ export function AppContextProvider({ children }) {
     extractParams(responseList[0]);
   }
 
+  function selectImage() {
+    const resPath = electron.readImageApi.readImage();
+    console.log(resPath);
+    setImagePath(resPath);
+  }
+
   function sendMessage() {
     if (isListLoaded && isMessageConfigured) {
       electron.senderApi.sendWhatsappMessage(
@@ -74,14 +86,18 @@ export function AppContextProvider({ children }) {
     <AppContext.Provider
       value={{
         isListLoaded,
+        isSendingImage,
         isMessageConfigured,
         isReadyToSendMessage,
         messageSaved,
         listParams,
         listJSON,
+        imagePath,
         selectFile,
         saveMessage,
-        sendMessage
+        sendMessage,
+        setIsSendingImage,
+        selectImage
       }}
     >
       {children}

@@ -8,13 +8,24 @@ contextBridge.exposeInMainWorld('electron', {
   },
   readFileApi: {
     readFile: () => {
-      const res = ipcRenderer.sendSync('file')
-      return res
+      const res = ipcRenderer.sendSync('file');
+      return res;
+    }
+  },
+  readImageApi: {
+    readImage: () => {
+      const res = ipcRenderer.sendSync('image');
+      return res;
     }
   },
   senderApi: {
     sendWhatsappMessage: (message, contacts, timeBefore, timeAfter) => {
       ipcRenderer.send('send', message, contacts, timeBefore, timeAfter);
+    }
+  },
+  imageApi: {
+    sendImage: () => {
+      return;
     }
   }
 });
