@@ -11,7 +11,7 @@ function createWindow() {
   const win = new BrowserWindow({
     width: 1024,
     height: 768,
-    icon: path.join(__dirname, 'assets/logo-full.png'),
+    icon: path.join(__dirname, 'assets/icon.ico'),
     backgroundColor: '#fff',
     webPreferences: {
       nodeIntegration: false,
@@ -20,6 +20,8 @@ function createWindow() {
       preload: path.join(__dirname, 'preload.js')
     }
   });
+
+  win.setMenuBarVisibility(false);
 
   win.loadFile('index.html');
 }
@@ -34,7 +36,7 @@ ipcMain.on('notify', (event, message) => {
 });
 
 ipcMain.on('imageSend', (event, path) => {
-  imageCopyToClipboard(path)
+  imageCopyToClipboard(path);
 });
 
 ipcMain.on('file', (event) => {
@@ -47,8 +49,26 @@ ipcMain.on('image', (event) => {
   event.returnValue = result;
 });
 
-ipcMain.on('send', (event, message, contacts, timeBefore, timeAfter, isSendingImage, imagePath ) => {
-  sendWhatsappMessage(message, contacts, timeBefore, timeAfter, isSendingImage, imagePath)
-});
+ipcMain.on(
+  'send',
+  (
+    event,
+    message,
+    contacts,
+    timeBefore,
+    timeAfter,
+    isSendingImage,
+    imagePath
+  ) => {
+    sendWhatsappMessage(
+      message,
+      contacts,
+      timeBefore,
+      timeAfter,
+      isSendingImage,
+      imagePath
+    );
+  }
+);
 
 app.whenReady().then(createWindow);

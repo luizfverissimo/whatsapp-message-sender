@@ -31,15 +31,18 @@ async function sendWhatsappMessage(message, contacts, timeBefore, timeAfter, isS
       await page.goto(urlCreated);
       await page.waitForSelector('#side > header');
       await page.waitForTimeout((Math.random() * (4 - 2) + 2) * timeBefore);
-      await page.keyboard.press('Enter');
 
       if(isSendingImage) {
-        await page.waitForTimeout((Math.random() * (4 - 2) + 2) * timeAfter);
+        await page.waitForTimeout((Math.random() * (4 - 2) + 2) * timeBefore);
         clipboard.writeImage(nativeImage.createFromPath(imagePath));
         await page.keyboard.down('Control')
         await page.keyboard.press('V')
         await page.keyboard.up('Control')
         await page.waitForTimeout((Math.random() * (4 - 2) + 2) * timeBefore);
+        await page.keyboard.press('Enter');
+      }
+
+      if (!isSendingImage) {
         await page.keyboard.press('Enter');
       }
 
