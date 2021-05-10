@@ -29,7 +29,6 @@ yarn watch && yarn start
 ```
 
 ## Author
-
 👤 **LF Verissimo**
 
 * Website: https://lfverissimo.com
