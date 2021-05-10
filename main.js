@@ -5,6 +5,7 @@ const notificationSender = require('./api/notification');
 const openDialogReadFile = require('./api/readFileApi');
 const openDialogReadImage = require('./api/readImageApi');
 const sendWhatsappMessage = require('./api/senderApi');
+const imageCopyToClipboard = require('./api/imageSendApi');
 
 function createWindow() {
   const win = new BrowserWindow({
@@ -32,6 +33,10 @@ ipcMain.on('notify', (event, message) => {
   notificationSender(message);
 });
 
+ipcMain.on('imageSend', (event, path) => {
+  imageCopyToClipboard(path)
+});
+
 ipcMain.on('file', (event) => {
   const result = openDialogReadFile();
   event.returnValue = result;
@@ -42,8 +47,8 @@ ipcMain.on('image', (event) => {
   event.returnValue = result;
 });
 
-ipcMain.on('send', (event, message, contacts, timeBefore, timeAfter ) => {
-  sendWhatsappMessage(message, contacts, timeBefore, timeAfter)
+ipcMain.on('send', (event, message, contacts, timeBefore, timeAfter, isSendingImage, imagePath ) => {
+  sendWhatsappMessage(message, contacts, timeBefore, timeAfter, isSendingImage, imagePath)
 });
 
 app.whenReady().then(createWindow);

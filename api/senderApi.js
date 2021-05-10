@@ -1,6 +1,7 @@
 const puppeteer = require('puppeteer-core');
 const stringInject = require('stringinject');
 const locateChrome = require('locate-chrome');
+const { clipboard, nativeImage } = require('electron');
 
 function createMessage(message, infos) {
   const messageCreated = stringInject.default(message, infos);
@@ -13,16 +14,12 @@ function createUrl(message, phone) {
   return urlCreated;
 }
 
-async function sendWhatsappMessage(message, contacts, timeBefore, timeAfter) {
+async function sendWhatsappMessage(message, contacts, timeBefore, timeAfter, isSendingImage, imagePath) {
   const locateChromePath = await locateChrome()
 
   const browser = await puppeteer.launch({
     executablePath: locateChromePath,
-    headless: false,
-    defaultViewport: {
-      width: 1024,
-      height: 768
-    }
+    headless: false
   });
   const page = await browser.newPage();
 
@@ -35,6 +32,17 @@ async function sendWhatsappMessage(message, contacts, timeBefore, timeAfter) {
       await page.waitForSelector('#side > header');
       await page.waitForTimeout((Math.random() * (4 - 2) + 2) * timeBefore);
       await page.keyboard.press('Enter');
+
+      if(isSendingImage) {
+        await page.waitForTimeout((Math.random() * (4 - 2) + 2) * timeAfter);
+        clipboard.writeImage(nativeImage.createFromPath(imagePath));
+        await page.keyboard.down('Control')
+        await page.keyboard.press('V')
+        await page.keyboard.up('Control')
+        await page.waitForTimeout((Math.random() * (4 - 2) + 2) * timeBefore);
+        await page.keyboard.press('Enter');
+      }
+
       await page.waitForTimeout((Math.random() * (4 - 2) + 2) * timeAfter);
     } catch (err) {
       console.log(err);

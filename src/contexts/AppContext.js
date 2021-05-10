@@ -77,7 +77,9 @@ export function AppContextProvider({ children }) {
         messageSaved,
         listJSON,
         timeBefore,
-        timeAfter
+        timeAfter,
+        isSendingImage,
+        imagePath
       );
     }
   }

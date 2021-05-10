@@ -19,13 +19,13 @@ contextBridge.exposeInMainWorld('electron', {
     }
   },
   senderApi: {
-    sendWhatsappMessage: (message, contacts, timeBefore, timeAfter) => {
-      ipcRenderer.send('send', message, contacts, timeBefore, timeAfter);
+    sendWhatsappMessage: (message, contacts, timeBefore, timeAfter, isSendingImage, imagePath) => {
+      ipcRenderer.send('send', message, contacts, timeBefore, timeAfter, isSendingImage, imagePath);
     }
   },
   imageApi: {
-    sendImage: () => {
-      return;
+    sendImage: (path) => {
+      ipcRenderer.send('imageSend', path)
     }
   }
 });
