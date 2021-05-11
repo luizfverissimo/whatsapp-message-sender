@@ -19,7 +19,7 @@ function Header() {
     <header className='headerContainer'>
       <div className='header'>
         <div>
-          <img src='file:///assets/logo-full.png' />
+          <img src='assets/logo-full.png' />
           <h1>WhatsApp Message Sender</h1>
         </div>
         <Link to='/config'>

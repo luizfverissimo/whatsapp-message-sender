@@ -52,7 +52,7 @@ function ConfigurationPage() {
               verificar o funcionamento.
             </strong>
           </p>
-          <img src='file:///assets/leave.png' alt='Mensagem de alerta' />
+          <img src='assets/leave.png' alt='Mensagem de alerta' />
         </div>
       </div>
     </div>
