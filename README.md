@@ -14,7 +14,12 @@
 
 > Application to send automatic WhatsApp messages using a .xls or .xlsx table. Created with Electron.js, React.js and Puppeteer.
 
+### 🔽 [Download](https://1drv.ms/u/s!Ah4VKOGMPB8ojbFkfPARUrWVd_8tNA?e=kbKfeL)
 ### 🏠 [Homepage](https://github.com/luizfverissimo/whatsapp-message-sender#readme)
+
+## Screenshots
+
+<img src="img/1.png" alt="1" width="300"/> <img src="img/2.png" alt="2" width="300"/> <img src="img/3.png" alt="3" width="300"/> 
 
 ## Install
 
