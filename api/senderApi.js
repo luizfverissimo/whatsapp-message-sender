@@ -10,7 +10,7 @@ function createMessage(message, infos) {
 }
 
 function createUrl(message, phone) {
-  const urlCreated = `https://web.whatsapp.com/send?phone=55${phone}&text=${message}`;
+  const urlCreated = `https://web.whatsapp.com/send?phone=${phone}&text=${message}`;
   return urlCreated;
 }
 
